@@ -1,0 +1,20 @@
+#lang racket
+;------------------------------ (1.7)
+(define (sqrt-iter guess x)
+  (if (good-enough? guess
+                    (improve guess x))
+      guess
+      (sqrt-iter (improve guess x)
+                 x)))
+(define (good-enough? guess_0 guess_1)
+  (< (abs (- guess_0 guess_1)) epsilon))
+(define (square x)
+  (* x x))
+(define epsilon .001)
+(define (improve guess x)
+  (average guess (/ x guess)))
+(define (average x y)
+  (/ (+ x y) 2.0))
+(define (sqrt x)
+  (sqrt-iter 1.0 x))
+(sqrt 9)
